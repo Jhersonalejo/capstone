@@ -11,11 +11,43 @@ const inventory = [
     { productId: 3, stock: 20 }
 ];
 
+// Function to simulate user login
+function login(username, password) {
+    // Simulate authentication (replace with actual authentication logic)
+    if (username === 'admin' && password === 'admin') {
+        return 'admin';
+    } else if (username === 'user' && password === 'user') {
+        return 'user';
+    } else {
+        return null;
+    }
+}
+
+// Function to display navigation based on user type
+function displayNavigation(userType) {
+    const nav = document.getElementById('navbar');
+    nav.innerHTML = '';
+
+    if (userType === 'admin') {
+        nav.innerHTML += '<a href="#" class="active">Dashboard</a>';
+        nav.innerHTML += '<a href="#">Products</a>';
+        nav.innerHTML += '<a href="#">Inventory</a>';
+    } else if (userType === 'user') {
+        nav.innerHTML += '<a href="#" class="active">Dashboard</a>';
+    }
+}
+
 // Function to display products in the dashboard
 function displayProducts() {
-    const productList = document.getElementById('product-list');
-    productList.innerHTML = ''; // Clear previous list
+    const mainContent = document.getElementById('main-content');
+    mainContent.innerHTML = '';
 
+    const productsCard = document.createElement('div');
+    productsCard.classList.add('card');
+    productsCard.innerHTML = '<h2>Products</h2><ul id="product-list"></ul>';
+    mainContent.appendChild(productsCard);
+
+    const productList = document.getElementById('product-list');
     products.forEach(product => {
         const li = document.createElement('li');
         li.textContent = `${product.name} - $${product.price}`;
@@ -25,16 +57,26 @@ function displayProducts() {
 
 // Function to display inventory in the dashboard
 function displayInventory() {
-    const inventoryDiv = document.getElementById('inventory');
-    inventoryDiv.innerHTML = ''; // Clear previous inventory
+    const mainContent = document.getElementById('main-content');
+    mainContent.innerHTML = '';
 
+    const inventoryCard = document.createElement('div');
+    inventoryCard.classList.add('card');
+    inventoryCard.innerHTML = '<h2>Inventory</h2><ul id="inventory-list"></ul>';
+    mainContent.appendChild(inventoryCard);
+
+    const inventoryList = document.getElementById('inventory-list');
     inventory.forEach(item => {
-        const p = document.createElement('p');
-        p.textContent = `Product ID: ${item.productId} - Stock: ${item.stock}`;
-        inventoryDiv.appendChild(p);
+        const li = document.createElement('li');
+        li.textContent = `Product ID: ${item.productId} - Stock: ${item.stock}`;
+        inventoryList.appendChild(li);
     });
 }
 
-// Initial display when the page loads
-displayProducts();
-displayInventory();
+// Simulating user login and displaying appropriate dashboard
+const loggedInUser = login('admin', 'admin'); // Change credentials for different users
+
+if (loggedInUser) {
+    displayNavigation(loggedInUser);
+    displayProducts(); // Default view for admin (can be adjusted based on userType)
+}
