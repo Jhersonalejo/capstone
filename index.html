@@ -3,32 +3,19 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Admin Dashboard</title>
+    <title>Inventory Management Dashboard</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
     <div class="container">
         <header>
-            <h1>Admin Dashboard</h1>
-            <nav>
-                <a href="#" class="active">Dashboard</a>
-                <a href="#">Products</a>
-                <a href="#">Inventory</a>
+            <h1>Inventory Management Dashboard</h1>
+            <nav id="navbar">
+                <!-- Navigation items will be dynamically updated based on user type -->
             </nav>
         </header>
-        <main>
-            <section class="products">
-                <h2>Products</h2>
-                <ul id="product-list">
-                    <!-- Product items will be dynamically added here -->
-                </ul>
-            </section>
-            <section class="inventory">
-                <h2>Inventory</h2>
-                <div id="inventory">
-                    <!-- Inventory details will be dynamically added here -->
-                </div>
-            </section>
+        <main id="main-content">
+            <!-- Content dynamically loaded based on user type -->
         </main>
     </div>
     <script src="script.js"></script>
